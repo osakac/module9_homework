@@ -13,19 +13,14 @@ const jsonString = {
   ]
 }
 
- const jsonStringify = JSON.stringify(jsonString)
- const data = JSON.parse(jsonStringify)
+const jsonStringify = JSON.stringify(jsonString)
+const data = JSON.parse(jsonStringify)
+console.log(data);
 
- const people = {
-  list: [
-    {name: data.list[0].name,
-    age: data.list[0].age,
-    prof: data.list[0].prof},
+function printUsers(data) {
+  data.list.forEach(el => {
+    console.log(`name: ${el.name}, age: ${el.age}, prof: ${el.prof}`)
+  })
+}
 
-    {name: data.list[1].name,
-    age: data.list[1].age,
-    prof: data.list[1].prof}
-  ]
- }
-
- console.log(people);
+printUsers(data)
