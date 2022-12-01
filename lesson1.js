@@ -22,36 +22,27 @@ const XML = `
 
 const xmlDOM = parser.parseFromString(XML, 'text/xml')
 
-const listNode = xmlDOM.querySelector('list')
-const studentNode1 = listNode.firstElementChild
-const nameNode1 = studentNode1.querySelector('name')
-const firstNameNode1 = nameNode1.querySelector('first')
-const secondNameNode1 = nameNode1.querySelector('second')
-const ageNode1 = studentNode1.querySelector('age')
-const profNode1 = studentNode1.querySelector('prof')
-const langAttr1 = nameNode1.getAttribute('lang')
-
-
-const studentNode2 = listNode.lastElementChild
-const nameNode2 = studentNode2.querySelector('name')
-const firstNameNode2 = nameNode2.querySelector('first')
-const secondNameNode2 = nameNode2.querySelector('second')
-const ageNode2 = studentNode2.querySelector('age')
-const profNode2 = studentNode2.querySelector('prof')
-const langAttr2 = nameNode2.getAttribute('lang')
-
-const people = {
-  list: [
-    {name: `${firstNameNode1.textContent} ${secondNameNode1.textContent}`,
-    age: ageNode1.textContent,
-    prof: profNode1.textContent,
-    lang: langAttr1},
-
-    {name: `${firstNameNode2.textContent} ${secondNameNode2.textContent}`,
-    age: ageNode2.textContent,
-    prof: profNode2.textContent,
-    lang: langAttr2}
-  ]
+function printUser(xmlDOM) {
+  const listNode = xmlDOM.querySelector('list')
+  const students = listNode.querySelectorAll('student')
+  const listOfStudents = []
+  students.forEach(el => {
+    const firstName = el.querySelector('first').textContent
+    const secondName = el.querySelector('second').textContent
+    const name = `${firstName} ${secondName}`
+    const age = el.querySelector('age').textContent
+    const prof = el.querySelector('prof').textContent
+    const lang = el.querySelector('name').getAttribute('lang')
+    const obj = {
+      name,
+      age,
+      prof,
+      lang
+    }
+    listOfStudents.push(obj)
+  })
+  return listOfStudents
 }
 
-console.log(people);
+const users = printUser(xmlDOM)
+console.log(users);
