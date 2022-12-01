@@ -15,7 +15,6 @@ const jsonString = {
 
 const jsonStringify = JSON.stringify(jsonString)
 const data = JSON.parse(jsonStringify)
-console.log(data);
 
 function printUsers(data) {
   data.list.forEach(el => {
